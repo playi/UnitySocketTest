@@ -24,9 +24,9 @@ public class mainController : MonoBehaviour {
     inputHost.text = "52.1.32.175";
     inputPort.text = "5500";
 
-    buttonConnection.onClick.AddListener(onClickConnection);
-    buttonSend      .onClick.AddListener(onClickSend);
-    buttonClear     .onClick.AddListener(onClickClear);
+    buttonConnection.onClick.AddListener (onClickConnection);
+    buttonSend      .onClick.AddListener (onClickSend);
+    buttonClear     .onClick.AddListener (onClickClear);
 
     updateStatus();
   }
@@ -148,6 +148,16 @@ public class mainController : MonoBehaviour {
   }
 
   void onClickSend() {
+    if (!Connected) {
+      setStatus("can't send.");
+      return;
+    }
+    string s = inputSend.text + "\n";
+    textReceived.text += s;
+    inputSend.text = "";
+    NetworkStream ns = theSocket.GetStream();
+    byte[] buf = System.Text.Encoding.ASCII.GetBytes(s);
+    ns.Write(buf, 0, buf.Length);
   }
 
   void onClickClear() {
