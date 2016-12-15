@@ -21,8 +21,8 @@ public class mainController : MonoBehaviour {
 
   void Start() {
 
-    inputHost.text = "108.92.171.117";
-    inputPort.text = "2310";
+    inputHost.text = "52.1.32.175";
+    inputPort.text = "5500";
 
     buttonConnection.onClick.AddListener(onClickConnection);
     buttonSend      .onClick.AddListener(onClickSend);
@@ -151,6 +151,7 @@ public class mainController : MonoBehaviour {
   }
 
   void onClickClear() {
+    textReceived.text = "";
   }
 
 
